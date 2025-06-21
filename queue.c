@@ -50,56 +50,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 100  // Maximum size of the queue
+#define MAX 100  
 
-// Structure to represent a queue
 typedef struct {
     int front, rear, size;
     int array[MAX];
 } Queue;
 
-// Function to initialize the queue
 void initQueue(Queue* q) {
     q->front = 0;
     q->rear = -1;
     q->size = 0;
 }
 
-// Function to check if the queue is full
 int isFull(Queue* q) {
     return q->size == MAX;
 }
 
-// Function to check if the queue is empty
 int isEmpty(Queue* q) {
     return q->size == 0;
 }
 
-// Function to enqueue an element into the queue
 void enqueue(Queue* q, int value) {
     if (isFull(q)) {
         printf("Queue Overflow: Unable to enqueue %d. The queue is full.\n", value);
         return;
     }
-    q->rear = (q->rear + 1) % MAX;  // Circular increment
+    q->rear = (q->rear + 1) % MAX;  
     q->array[q->rear] = value;
     q->size++;
     printf("%d enqueued to queue.\n", value);
 }
 
-// Function to dequeue an element from the queue
 int dequeue(Queue* q) {
     if (isEmpty(q)) {
         printf("Queue Underflow: Unable to dequeue. The queue is empty.\n");
-        return -1;  // Return a sentinel value indicating underflow
+        return -1; 
     }
     int value = q->array[q->front];
-    q->front = (q->front + 1) % MAX;  // Circular increment
+    q->front = (q->front + 1) % MAX; 
     q->size--;
     return value;
 }
 
-// Function to display the elements of the queue
 void display(Queue* q) {
     if (isEmpty(q)) {
         printf("Queue is empty.\n");
@@ -107,7 +100,7 @@ void display(Queue* q) {
     }
     printf("Queue elements:\n");
     for (int i = 0; i < q->size; i++) {
-        int index = (q->front + i) % MAX;  // Circular indexing
+        int index = (q->front + i) % MAX;  
         printf("%d\n", q->array[index]);
     }
 }
@@ -116,7 +109,7 @@ int main() {
     Queue q;
     int choice, value;
 
-    initQueue(&q);  // Initialize the queue
+    initQueue(&q);  
 
     while (1) {
         printf("\nQueue Operations Menu:\n");
