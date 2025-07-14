@@ -26,26 +26,22 @@ Node* buildTree(vector<int>preorder){
 
     return root;
 }
-void inOrder(Node* root){//inorder traversal.
-    if (root==NULL){
-        return;
-    }
-    inOrder(root->left);
-    cout<<root->data<<" ";
-    inOrder(root->right);
+int sumofNodes(Node* root){
+    if(root==NULL) return 0;
+
+    int sumleft = sumofNodes(root->left);
+    int sumright = sumofNodes(root->right);
+    
+    return sumleft+ sumright + root->data;
 
 }
+
+
 int main(){
     vector<int> preorder= {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     
     Node* root = buildTree(preorder);
-    // cout<<root->data<<endl;
-    // cout<<root->right->data<<endl;
-    // cout<<root->left->data<<endl;
-
-    // preOrder(root);
-    inOrder(root);
-
+    cout<<sumofNodes(root); 
     return 0;
 
 }
