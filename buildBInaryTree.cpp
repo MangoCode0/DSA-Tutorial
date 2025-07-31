@@ -70,6 +70,15 @@ void levelOrder(Node* root){// level order traversal;
     }
     cout<<endl;
 }
+
+int height(Node* root){// Function to calculate the height of the binary tree
+    if (root==NULL){
+        return 0;
+    }
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+    return 1 + max(leftHeight, rightHeight);
+}
 int main(){
     vector<int> preorder= {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     
@@ -81,8 +90,8 @@ int main(){
     // preOrder(root);
     // inOrder(root);
     // postOrder(root);
-    levelOrder(root);
-
+    // levelOrder(root);
+    cout << height(root) << endl;
     return 0;
 
 }
